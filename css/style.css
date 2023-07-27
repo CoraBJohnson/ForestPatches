@@ -4,12 +4,22 @@ h1{
 }
 p1{
     font-family: Arial, sans-serif;
-    text-align: left;
 }
+
 #map {
     height: 700px;
     width: 60%;
     display: inline-block;
+}
+
+#head-desc {
+    width: 100%;
+    padding: 5px;
+    display: inline-block;
+    line-height: 42px;
+    position: relative;
+    bottom: 100;
+    background-color: rgba(203, 232, 186,1);
 }
 
 #map2 {

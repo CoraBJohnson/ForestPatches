@@ -1,8 +1,18 @@
 //initialize Leaflet
-var map = L.map('map').setView([51, -0.09], 13);
+var map = L.map('map').setView([43.15, -89.49], 12);
 
 //add tile layer
-L.tileLayer('mapbox://styles/corauserid/clis0erre01p701qpep5n6gx8', {
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
     maxZoom: 20,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copywright"> OpenStreetMap </a>'
+    attribution: 'Tiles &copy; Esri'
+}).addTo(map);
+
+//add reference tile layer
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 20,
+}).addTo(map);
+
+//add the zoom control
+L.control.zoom({
+    position: 'bottomleft'
 }).addTo(map);
