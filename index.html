@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="lib/leaflet/leaflet.css"/>
     <link rel="stylesheet" href="css/leaflet.draw.css"/>
 
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 
     <link rel="stylesheet" href="css/style.css"/>
@@ -25,10 +33,23 @@
 </head>
 <body>
 
-<div id="map" style="z-index: 1; position: absolute; top: 0; left: 0;"></div>
-<div id="head-desc" style="z-index: 2; position: absolute; top: 0; left: 0; width: 99.5%" ><h1 style="color:black; font-size: 1.8em; text-align: left; line-height: normal; margin-top:5px; margin-left:20px ">Mendota Yahara Watershed Historical Forest Patches</h1><p style="color:black; font-size: 1em; text-align: left; line-height:normal; margin-top:-10px; margin-left:20px; margin-right:10px"> <a href="about.html" target="_blank" style="color:#0078a8">About the Project</a> | <a href="references.html" target="_blank" style="color:#0078a8">References</a> |  <a href="https://www.urbantreealliance.org/" target="_blank" style="color:#0078a8">Urban Tree Alliance</a></p></div>
 
-<br><br><br><br><br>
+<div id="head-desc" style="z-index: 2; position: absolute; top: 0; left: 0; width: 99.5%" ><h1 style="color:black; font-size: 1.8em; text-align: left; line-height: normal; margin-top:5px; margin-left:20px ">Mendota Yahara Watershed Historical Forest Patches</h1><p style="color:black; font-size: 1em; text-align: left; line-height:normal; margin-top:-10px; margin-left:20px; margin-right:10px"> <a href="about.html" target="_blank" style="color:#0078a8">About the Project</a> | <a href="references.html" target="_blank" style="color:#0078a8">References</a> |  <a href="https://www.urbantreealliance.org/" target="_blank" style="color:#0078a8">Urban Tree Alliance</a></p></div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div id="map" class="cols-x-9"></div>
+
+        <div class="sidebar col-xs-3">
+            <div class="tab-content ">Here is the tab
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--        <div id="map" style="z-index: 1; position: absolute; top: 0; left: 0;"></div>-->
+
+
 <!--<div id="layerList" style="z-index: 1; position: absolute; top: 0; right: 0; width: 20%" > <h1 style="color:black; font-size: 1 em; text-align: left; line-height: normal; margin-top:5px; margin-right:20px">Choose a year form the list or use the slider and buttons to change the historical imagery and forest cover. </h1></div>-->
 
 

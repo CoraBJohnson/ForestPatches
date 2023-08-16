@@ -20,6 +20,12 @@ function createMap() {
         maxZoom: 20,
     }).addTo(map);
 
+    // // add 2022 imagery
+    // L.tileLayer(' https://dcimapapps.countyofdane.com/arcgisimg/services/ColorOrtho6Inch2022WEB/ImageServer/tile/{z{/{y}/{x}',{
+    //     maxZoom: 20,
+    // }).addTo(map);
+
+
 
 //add the zoom control
     L.control.zoom({
