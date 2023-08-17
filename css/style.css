@@ -1,13 +1,23 @@
-h1{
+#h1{
     font-family: Arial, sans-serif;
     color: rgb(211,139,24);
 }
+#h2 {
+    color: black;
+    font-size: 1.8em;
+    text-align: left;
+    line-height: normal;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+
 p1{
     font-family: Arial, sans-serif;
 }
 
 #map {
-    height: 700px;
+    height:800px;
     width: 60%;
     display: inline-block;
 }
@@ -17,7 +27,7 @@ p1{
     padding: 5px;
     display: inline-block;
     line-height: 42px;
-    position: relative;
+    position: fixed;
     bottom: 100;
     background-color: rgba(203, 232, 186,1);
 }

@@ -128,6 +128,8 @@ function symbol2(data,map) {
 
     // legend.addTo(map);
 
+
+
 //Import GeoJSON data
 function getData(map){
     //load the data
