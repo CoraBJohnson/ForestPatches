@@ -19,78 +19,29 @@
 
 
     <link rel="stylesheet" href="css/style.css"/>
-<!--    <style>-->
-<!--        body {-->
-<!--            padding: 0;-->
-<!--            margin: 0;-->
-<!--        }-->
-<!--        html, body, #map {-->
-<!--            height: 60%;-->
-<!--            width: 60%;-->
-<!--        }-->
-<!--    </style>-->
 
 </head>
 <body>
 <div id="head-desc" style="position: fixed; z-index: 2; width: 100%" >
-    <h2>Mendota Yahara Watershed Historical Forest Patches</h2>
-    <p style="color:black; font-size: 1em; text-align: left; line-height:normal; margin-top:-10px; margin-left:20px; margin-right:10px">
+    <h2 style="margin-left: 2%; font-weight: bold">Mendota Yahara Watershed Historical Forest Patches</h2>
+    <p style="color:black; font-size: 1em; text-align: left; line-height:normal; margin-top:-8px; margin-left:5%">
         <a href="about.html" target="_blank" style="color:#0078a8">About the Project</a> |
 <!--    <a href="references.html" target="_blank" style="color:#0078a8">References</a> |-->
         <a href="https://www.urbantreealliance.org/" target="_blank" style="color:#0078a8">Urban Tree Alliance</a></p>
 </div>
 
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-<!--    <a class="navbar-brand"><h1 style="color:black; font-size: 1.8em; text-align: left; line-height: normal; margin-top:5px; margin-left:20px ">-->
-<!--        Mendota Yahara Watershed Historical Forest Patches</h1>-->
-<!--        <p style="color:black; font-size: 1em; text-align: left; line-height:normal; margin-top:-10px; margin-left:20px; margin-right:10px">-->
-<!--            <a href="about.html" target="_blank" style="color:#0078a8">About the Project</a> |-->
-<!--            <a href="references.html" target="_blank" style="color:#0078a8">References</a> |-->
-<!--            <a href="https://www.urbantreealliance.org/" target="_blank" style="color:#0078a8">Urban Tree Alliance</a></p></a>-->
-<!--</nav>-->
-
 <div class="container-fluid">
     <div class="row">
         <div id="map" class="col-xs-9" style="z-index: 1"></div>
-        <div class="sidebar col-xs-3">
-
-            <!-- Tab Navis-->
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#query_site" data-toggle="tab">Find a Site!</a></li>
-                <li><a href="#create_review" data-toggle="tab">Review a Site</a></li>
-            </ul>
+        <div class="sidebar col-xs-3" style="z-index:1; margin-top: 8%">
 
             <!-- Tab panes -->
             <div class="tab-content ">
-                <!-- Create Report Tab Panel -->
-                <div class="tab-pane" id="create_review">
-                    <form id = "create_report_form">
-                        <div><label>Site Name:&nbsp</label><input placeholder="Site name" name="sN" id="sN"></div>
-                        <div><label>Stars:</label>
-                            <select name="stars">
-                                <option value="">Rate the site</option>
-                                <option value="One Star">One Star</option>
-                                <option value="Two Stars">Two Stars</option>
-                                <option value="Three Stars">Three Stars</option>
-                                <option value="Four Stars">Four Stars</option>
-                                <option value="Five Stars">Five Stars!</option>
-                            </select>
-                        </div>
-                        <div><label>Comment:&nbsp</label><input placeholder="Additional message" name="message"></div>
-                        <div><label>First Name:&nbsp</label><input placeholder="Your first name" name="fN"></div>
-                        <div><label>Last Name:&nbsp</label><input placeholder="Your last name" name="lN"></div>
-                        <div><label>Age:&nbsp</label><input placeholder="Your age" name="age"></div>
-                        <button type="submit" class="btn btn-default" id="report_submit_btn">
-                            Submit the review <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                    </form>
 
-
-                </div>
-
-                <!-- Query Report Tab Panel -->
-                <div class="tab-pane active" id="query_site">
+                <!-- Imagery Tab Panel -->
+                <div class="tab-pane active" id="imagery">
                     <form id = "query_report_form">
+                        <div><h4> Imagery Year</h4></div>
                         <div><label>Site Type:</label>
                             <select onchange="onSelectReportType(this)" name="site_type">
                                 <option value="">Choose the site type</option>
@@ -98,22 +49,10 @@
                                 <option value="historical">Historical Site</option>
                             </select>
                         </div>
-                        <div class="additional_msg_div" style="visibility: hidden"><label class="additional_msg"></label>
-                            <select class="additional_msg_select" name="art_or_war"></select>
-                        </div>
-                        <div><label>Search Near Address:</label>
-                            <input id="autocomplete" placeholder="Address" >
-                        </div>
-                        <div><label>Site Name:&nbsp</label><input placeholder="Optional" name="title"></div>
                         <div>
                             <label><input type="radio" name="coords" value="t">&nbspSearch Near Clicked Coordinates</label>
                         </div>
-                        <div><label>Latitude&nbsp</label><input placeholder="Optional" name="lat2" id="lat"></div>
-                        <div><label>Longitude&nbsp</label><input placeholder="Optional" name="lon2" id="lon"></div>
-                        <button type="submit" class="btn btn-default">
-                            Submit the query <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </form>
+                        </form>
                 </div>
             </div>
 

@@ -25,9 +25,7 @@ function createMap() {
     //     maxZoom: 20,
     // }).addTo(map);
 
-    L.tileLayer('https://dnrmaps.wi.gov/arcgis/rest/services/DW_Map_Dynamic/EN_Forest_Land_Cover_WTM_Ext/MapServer/1/{z}/{y}/{x}').addTo(map);
-
-
+    //L.tileLayer('https://dnrmaps.wi.gov/arcgis/rest/services/DW_Map_Dynamic/EN_Forest_Land_Cover_WTM_Ext/MapServer/1/{z}/{y}/{x}').addTo(map);
 
 //add the zoom control
     L.control.zoom({
@@ -36,50 +34,35 @@ function createMap() {
 
     //call getData function to add data
     getData(map);
-
 }
+//-----------end of createMap() ---------------
 
 //calculate color for symbology
-// function initColor(attValue) {
-//     return attValue == "ForestForest" ? '#267300' : //forested since 2010
-//         attValue == "ForestNotForest" ? '#a5f57a' : //forested in 2010 not forest in 22
-//             attValue == "NotForestNotForest" ? '#fff1d2' ; // not forested since 2010
+function legendColor(attValue) {
+    return attValue == "ForestForest" ? '#267300' :
+    attValue == "ForestNotForest" ? '#a5f57a' :
+    attValue == "NotForestNotForest" ? '#fff1d2' : // Means: if (d >= 1966) return 'green' else…
+    attValue == "No Data" ? '#ffffff' : // Note that numbers must be in descending order
+    '#654321';
+};
+
 //
+//             if (feature.properties.Forest_Sta == "ForestForest"){
+//                 return attValue == '#267300'
+//             } else if (feature.properties.Forest_Sta == "ForestNotForest"){
+//                 return attValue == '#a5f57a'
+//             } else if (feature.properties.Forest_Sta == "NotForestNotForest"){
+//                 return attValue == '#fff1d2'
+//             } else {
+//                 return attValue == '654321'
+//             }
+//         }
+//     })
 // };
 
-//set style for symbology
-function style(feature) {
-    return {
-        //fillColor: initColor(feature.properties.Forest_Sta),
-        fillColor: '#267300',
-        weight: 1,
-        opacity: 0.7,
-        fillOpacity: 1
-    };
-}
 
-// var patches = [{
-//     "type": "Feature",
-//     "properties": {"Forest_Sta": "NotForestNotForest"},
-// }, {
-//     "type": "Feature",
-//     "properties": {"Forest_Sta": "ForestForest"},
-//     }, {
-//        "type": "Feature",
-//        "properties": {"Forest_Sta": "ForestNotForest"}
-// }];
 
 function symbol2(data,map) {
-    var patches = [{
-        "type": "Feature",
-        "properties": {"Forest_Sta": "NotForestNotForest"},
-    }, {
-        "type": "Feature",
-        "properties": {"Forest_Sta": "ForestForest"},
-    }, {
-        "type": "Feature",
-        "properties": {"Forest_Sta": "ForestNotForest"}
-    }];
 
     L.geoJson(data, {
         style: function(feature) {
@@ -93,42 +76,30 @@ function symbol2(data,map) {
 .addTo(map);
 };
 
-// function onEachFeature(feature,layer) {
-//     var forestStatus = feature.properties.Forest_Sta;
-    // var regionName = feature.properties.NAME_1;
-    // if (feature.properties.Nov_2022 <= 0) {
-    //     var nov22Food = "No Data"} else
-    // {var nov22Food = (feature.properties.Nov_2022*100).toFixed(1)+"%"};
-    // var femaleEdu = feature.properties.Female_Edu.toFixed(1);
-    // var maleEdu = feature.properties.Male_Educa.toFixed(1);
-    // var popupContent = '<b>' + regionName + ', ' + countryName + '</b><br>' +
-    //     'Insufficient Food Consumption Nov-2022: <b>' + nov22Food+ '</b><br>Female Avg. Years of Educational Attainment: <b>'
-    //     + femaleEdu + '</b><br>Male Avg. Years of Educational Attainment: <b>' + maleEdu + '</b><br>Insufficient Food Consumption Trend: ';
-//}
+function createLegend(map, data, attValue) {
+    //var attValue= feature.properties.Forest_Sta;
+    var legend = L.control( { position: 'bottomleft' } );
+    legend.onAdd = function(map) {
+        var legendContainer = L.DomUtil.create("div", "legend");
+        var symbolsContainer = L.DomUtil.create("div", "symbolsContainer");
+        var margin;
+        L.DomEvent.addListener(legendContainer, 'mousedown', function(e) {
+            L.DomEvent.stopPropagation(e);
+        });
+        $(legendContainer).append("<h2 id='legendTitle'>Forest Patches <br>2010-2022<br></h2>");
+        $(legendContainer).append(symbolsContainer);
+        //add the color legend inside the existing legend.
+        var div = L.DomUtil.create('div', 'colorLegend'),
+            grades = ["Continuous Forest Since 2010","Forest in 2010, Not Forest in 2022","Not Forest in 2010, Forest in 2022","Not Forest since 2010"];
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=  '<i style="background-color:' + legendColor(grades[i]) + '; border: 2px solid"></i> ' + grades[i] + '<br>';};
 
-// function createLegend(map, data, attributes) {
-//     var legend = L.control( { position: 'topleft' } );
-//     legend.onAdd = function(map) {
-//         var legendContainer = L.DomUtil.create("div", "legend");
-//         var symbolsContainer = L.DomUtil.create("div", "symbolsContainer");
-//         var margin;
-//         L.DomEvent.addListener(legendContainer, 'mousedown', function(e) {
-//             L.DomEvent.stopPropagation(e);
-//         });
-//         $(legendContainer).append("<h2 id='legendTitle'>Forest Patches <br>2010-2022<br></h2>");
-//         $(legendContainer).append(symbolsContainer);
-//         //add the color legend inside the existing legend.
-//         //var div = L.DomUtil.create('div', 'colorLegend'),
-//             //grades = ["High and Rising IFC, High Edu","High IFC, High Edu","High IFC, Low Edu","Lower  IFC, High Edu","Lower IFC, Low Edu"];
-//         // for (var i = 0; i < grades.length; i++) {
-//         //     div.innerHTML +=  '<i style="background-color:' + initColor(grades[i]) + '; border: 2px solid '+ legendColorBorder(grades[i])+'"></i> ' + grades[i] + '<br>';};
-//
-//         //$(legendContainer).append(div);
-//
-//         return legendContainer;
-//     };
+        $(legendContainer).append(div);
 
-    // legend.addTo(map);
+        return legendContainer;
+    };
+
+    legend.addTo(map)};
 
 
 
@@ -142,7 +113,7 @@ function getData(map){
 
         console.log(data)
         symbol2(response, map);
-        //createLegend(map, data, attributes);
+        createLegend(map, data, attributes);
         }
     });
 };

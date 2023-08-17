@@ -7,6 +7,7 @@
     font-size: 1.8em;
     text-align: left;
     line-height: normal;
+    font-weight: bold;
 }
 
 p1{
@@ -28,6 +29,7 @@ p1{
     line-height: 42px;
     position: fixed;
     background-color: rgba(203, 232, 186,1);
+    font-weight: bold;
 }
 
 #map2 {
@@ -54,8 +56,46 @@ p1{
     float: left;
 }
 
-#aboutH {
-    font-
+
+.legend, .temporal-legend {
+    padding: 6px 10px;
+    font: 8px;
+    /*//font-family: Gill Sans,Gill Sans MT,Gill Sans,sans-serif;*/
+    background: white;
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
 }
+#legendTitle {
+    text-align: center;
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+.symbolsContainer {
+    float: left;
+    margin-left: 40%;
+}
+
+.legendValue {
+    position: relative;
+    right: 20%;
+}
+.colorLegend {
+    padding: 6px 8px;
+    font: 14px/16px;
+    font-family:Gill Sans,Gill Sans MT,Calibri,sans-serif;
+    background: rgba(255,255,255,0);
+    box-shadow: 0 0 15px rgba(0,0,0,0);
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.colorLegend i {
+    width: 14px;
+    height: 14px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
 
 
