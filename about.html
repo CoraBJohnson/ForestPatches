@@ -3,8 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>About the Project</title>
+
+
+    <!--external stylesheet link-->
+    <link rel="stylesheet" href="lib/leaflet/leaflet.css"/>
+    <link rel="stylesheet" href="css/leaflet.draw.css"/>
+
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
+
 <body>
-<h>About this Project</h>
+<div id="head-desc" class="col-xs-9" style="position: fixed" >
+    <h2 style="margin-left: 2%">About this Project</h2>
+    <a href="index.html" target="_blank" style="margin-left: 3%; color:#0078a8 ">Return to Map Application</a>
+</div>
+<br><br><br><br><br><br><br><br>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-8" style="margin-left: margin-left: 3%" >
+                <p>
+                    The Mendota-Yahara Watershed is a USGS HUC-10 watershed northwest of Madison, Wisconsin that drains into Lake Mendota and the Yahara River. Before European settlement, much of the watershed was forested. In the years since, there have been many changes in land use including periods of deforestation and reforestation. To visualize and explore this change in forest cover for the entire watershed, an analysis of historical imagery was conducted to create the map layers and application. Historical imagery was evaluated for the years 2022, 2010, 2000, 1987, 1976, 1968, 1955 and 1937. However due to time constraints, this application only represents forest patches for 2010 through 2022.
+
+                    <br><br>Process: The forest and non-forest polygons were created by
+                    using ESRI ArcGIS to create polygons from visual analysis of Dane County aerial imagery.
+                    The criteria used to determine whether or not an area comprises a forest patch in this study are:
+                    <br><br>
+                    •	Forest patches are contiguous tree canopies covering any underlying land use.<br>
+                    •	Patches are bound either by different land covers, such as an oak clearing
+                    surrounded by agriculture, or roads.<br>
+                    •	Patches cover a minimum of one continuous acre.<br>
+                    •	Rural forest patches also cover a minimum of one continuous acre, yet they
+                    are measured with an estimated canopy coverage of 50% or more.  This captures
+                    emergent forests and potential remnant savannas. <br>
+                    •	Linear patches such as windrows and drainages are wider than one tree<br><br>
+                    After the polygons were created for each year, a spatial union was performed to
+                    combine data for each year to create the visualization seen in the map application.<br><br><br>
+                </p>
+
+
+                <h>
+                    <strong>References:</strong> <br><br>
+                    Curtis, J. T. 1956. The Modification of Mid-latitude Grasslands and Forests by Man,
+                    pp. 721–726. In W.L. Thomas (ed.), Man’s Role in Changing the Face of the Earth.
+                    <br><br> Curtis, J. T. 1959. The Vegetation of Wisconsin. University of Wisconsin Press.
+                    <br></br>Shriner, F. A., and Copeland, F. B. 1904. Deforestation and Creek Flow about
+                    Monroe, Wisconsin, Botanical Gazette, XXXVII, No. 2, 139-43.
+                </h>
+        </div>
+
+        </div>
+
+
+
+
+    </div>
+</div>
+
 </body>
 </html>

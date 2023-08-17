@@ -1,7 +1,7 @@
 //function to create map
 function createMap() {
     var map = L.map('map', {
-        center: [43.15, -89.49],
+        center: [43.16, -89.49],
         zoom: 12,
         boxZoom: false,
         doubleClickZoom: false,
@@ -21,9 +21,11 @@ function createMap() {
     }).addTo(map);
 
     // // add 2022 imagery
-    // L.tileLayer(' https://dcimapapps.countyofdane.com/arcgisimg/services/ColorOrtho6Inch2022WEB/ImageServer/tile/{z{/{y}/{x}',{
+    // L.tileLayer(' https://dcimapapps.countyofdane.com/arcgisimg/services/ColorOrtho6Inch2022WEB/ImageServer/tile/{z}/{y}/{x}',{
     //     maxZoom: 20,
     // }).addTo(map);
+
+    L.tileLayer('https://dnrmaps.wi.gov/arcgis/rest/services/DW_Map_Dynamic/EN_Forest_Land_Cover_WTM_Ext/MapServer/1/{z}/{y}/{x}').addTo(map);
 
 
 
