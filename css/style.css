@@ -70,10 +70,14 @@ p1{
     text-align: center;
     margin-bottom: 6px;
     margin-top: 6px;
+    font-size: 18px;
+    font-weight: bold;
 }
 .symbolsContainer {
     float: left;
     margin-left: 40%;
+    padding: 1%;
+    font-size: 16px;
 }
 
 .legendValue {
@@ -81,13 +85,16 @@ p1{
     right: 20%;
 }
 .colorLegend {
-    padding: 6px 8px;
-    font: 14px/16px;
+    padding: 10px;
     font-family:Gill Sans,Gill Sans MT,Calibri,sans-serif;
     background: rgba(255,255,255,0);
     box-shadow: 0 0 15px rgba(0,0,0,0);
     border-radius: 5px;
-    margin-top: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 26px;
+    margin-left: 26 px;
+    font-size: 16px;
 }
 .colorLegend i {
     width: 14px;
@@ -96,6 +103,8 @@ p1{
     margin-right: 8px;
     opacity: 0.7;
 }
+
+
 
 
 

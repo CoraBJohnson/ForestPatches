@@ -39,26 +39,45 @@ function createMap() {
 
 //calculate color for symbology
 function legendColor(attValue) {
-    return attValue == "ForestForest" ? '#267300' :
-    attValue == "ForestNotForest" ? '#a5f57a' :
-    attValue == "NotForestNotForest" ? '#fff1d2' : // Means: if (d >= 1966) return 'green' else…
-    attValue == "No Data" ? '#ffffff' : // Note that numbers must be in descending order
+    //var attValue = feature.properties.Forest_Sta;
+    return attValue == 'NotForestNotForest' ? '#d3ccc6':   //descending order from not forest to forest
+    attValue == 'ForestNotForest' ? '#deeed5' :
+    attValue == 'ForestForest' ? '#c7d6bf' :
     '#654321';
 };
 
-//
-//             if (feature.properties.Forest_Sta == "ForestForest"){
-//                 return attValue == '#267300'
-//             } else if (feature.properties.Forest_Sta == "ForestNotForest"){
-//                 return attValue == '#a5f57a'
-//             } else if (feature.properties.Forest_Sta == "NotForestNotForest"){
-//                 return attValue == '#fff1d2'
-//             } else {
-//                 return attValue == '654321'
-//             }
-//         }
-//     })
-// };
+//calculate color for symbology
+function legendColorBorder(attValue) {
+    //var attValue = feature.properties.Forest_Sta;
+    return attValue == 'NotForestNotForest' ? '#654321':   //descending order from not forest to forest
+        attValue == 'ForestNotForest' ? '#a5f57a' :
+            attValue == 'ForestForest' ? '#336906' :
+                '#654321';
+};
+
+
+function legendColor1(data) {
+
+    L.geoJson(data, {
+        style: function(feature) {
+            switch (feature.properties.Forest_Sta) {
+                case 'ForestForest': return {color: "#336906"};
+                case 'ForestNotForest':   return {color: "#a5f57a"};
+                case 'NotForestNotForest': return {color: "#654321", fillColor:"#654321" };
+            }
+        }
+
+    });
+};
+
+// function style(feature) {
+//     return {
+//         fillColor: legendColor(feature.properties.Forest_Sta),
+//         opacity: 1,
+//         color: "#6E6E6E" ,
+//         fillOpacity: 0.7
+//     };
+// }
 
 
 
@@ -72,6 +91,7 @@ function symbol2(data,map) {
                 case 'NotForestNotForest': return {color: "#654321", fillColor:"#654321" };
             }
         }
+
     })
 .addTo(map);
 };
@@ -86,13 +106,14 @@ function createLegend(map, data, attValue) {
         L.DomEvent.addListener(legendContainer, 'mousedown', function(e) {
             L.DomEvent.stopPropagation(e);
         });
-        $(legendContainer).append("<h2 id='legendTitle'>Forest Patches <br>2010-2022<br></h2>");
+        $(legendContainer).append("<div id='legendTitle'>Forest Pattern  <br>from 2010 to 2022<br></div>");
         $(legendContainer).append(symbolsContainer);
         //add the color legend inside the existing legend.
         var div = L.DomUtil.create('div', 'colorLegend'),
-            grades = ["Continuous Forest Since 2010","Forest in 2010, Not Forest in 2022","Not Forest in 2010, Forest in 2022","Not Forest since 2010"];
+            grades = ["NotForestNotForest","ForestNotForest","ForestForest"];
         for (var i = 0; i < grades.length; i++) {
-            div.innerHTML +=  '<i style="background-color:' + legendColor(grades[i]) + '; border: 2px solid"></i> ' + grades[i] + '<br>';};
+            div.innerHTML +=  '<i style="height: 17px; width: 26px; background-color:' + legendColor(grades[i]) + '; border: 3px solid '+ legendColorBorder(grades[i])+ '"></i> ' + grades[i] + '<br>';};
+
 
         $(legendContainer).append(div);
 
@@ -112,6 +133,7 @@ function getData(map){
             var attributes = ['Forest since 2010', 'Forest in 2010, Not Forest in 2022', 'Not Forest Since 2010'];
 
         console.log(data)
+
         symbol2(response, map);
         createLegend(map, data, attributes);
         }
