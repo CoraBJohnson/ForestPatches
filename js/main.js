@@ -20,26 +20,10 @@ function createMap() {
         maxZoom: 20,
     }).addTo(map);
 
-    // //add 2022 imagery tile layer
-    // L.tileLayer('https://dcimapapps.countyofdane.com/arcgisimg/rest/services/ColorOrtho6Inch2022WEB/ImageServer/tile/{z}/{y}{x}',{
-    //     maxZoom: 20,
-    // }).addTo(map);
 
-    // // add 2022 imagery
-    // L.tileLayer(' https://dcimapapps.countyofdane.com/arcgisimg/services/ColorOrtho6Inch2022WEB/ImageServer/tile/{z}/{y}/{x}',{
-    //     maxZoom: 20,
-    // }).addTo(map);
-
-    //L.tileLayer('https://dnrmaps.wi.gov/arcgis/rest/services/DW_Map_Dynamic/EN_Forest_Land_Cover_WTM_Ext/MapServer/1/{z}/{y}/{x}').addTo(map);
-
-//add the zoom control
-    L.control.zoom({
-        position: 'bottomleft'
-    }).addTo(map);
-
-    var OpenStreetMap_DE = L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+        maxZoom: 16
     });
 
     var lyrImagery2010;
@@ -52,30 +36,22 @@ function createMap() {
     //lyrImagerytest = L.imageOverlay('data/Layout.png', [[43.279063, -89.619900], [43.017300, -89.342106]]).addTo(map);
 
 
-    objOverlays = {
-        "2022 Imagery" : lyrImagery2022,
-        "2010 Imagery" : lyrImagery2010
-    };
-
+    // objOverlays = {
+    //     "2022 Imagery" : lyrImagery2022,
+    //     "2010 Imagery" : lyrImagery2010,
+    //     'Light Gray Canvas': Esri_WorldGrayCanvas
+    //
+    // };
 
     //leaflet layer control
     var baseMaps = {
-        'Open Street Map': OpenStreetMap_DE,
-        '2022 Imagery': lyrImagery2022,
-        '2010 Imagery': lyrImagery2010
+        'Light Gray Canvas': Esri_WorldGrayCanvas,
+        '2010 Imagery': lyrImagery2010,
+        '2022 Imagery': lyrImagery2022
+
     }
 
-    L.control.layers(baseMaps).addTo(map);
-    // L.control.layers({
-    //     position: 'bottomright'
-    // }).addTo(map);
-
-    ctlLayer = L.control.layers(objOverlays).addTo(map);
-
-    //ctlSidebar = L.control.sidebar('side-bar').addTo(map);
-
-
-
+    var ctlLayers = L.control.layers(baseMaps).addTo(map);
 
 
 
@@ -117,15 +93,15 @@ function legendColor1(data) {
     });
 };
 
-// function style(feature) {
-//     return {
-//         fillColor: legendColor(feature.properties.Forest_Sta),
-//         opacity: 1,
-//         color: "#6E6E6E" ,
-//         fillOpacity: 0.7
-//     };
-// }
 
+
+function onEachFeature(feature,layer) {
+    var forestSta = feature.properties.Forest_Status;
+    var popupContent = forestSta + '<br>';
+
+    var popup = L.popup().setContent(popupContent);
+    layer.bindPopup(popup)
+};
 
 
 function symbol2(data,map) {
@@ -137,8 +113,8 @@ function symbol2(data,map) {
                 case 'ForestNotForest':   return {color: "#a5f57a"};
                 case 'NotForestNotForest': return {color: "#654321", fillColor:"#654321" };
             }
-        }
-
+        },
+        onEachFeature: onEachFeature
     })
 .addTo(map);
 };

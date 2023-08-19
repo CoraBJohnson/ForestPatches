@@ -32,29 +32,24 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div id="map" class="col-xs-10" style="z-index: 1"></div>
-        <div class="sidebar col-xs-2" style="z-index:1; margin-top: 8%">
+        <div id="map" class="col-xs-10" style="z-index: 1; margin-left: 1%; margin-top: 5%"></div>
+        <div class="sidebar col-xs-4" style="z-index:1; margin-top: 7%">
 
             <!-- Tab panes -->
             <div class="tab-content ">
 
-                <!-- Imagery Tab Panel -->
-                <div class="tab-pane active" id="imagery">
-                    <form id = "query_report_form">
-                        <div><h4> Imagery Year</h4></div>
-                        <div><label>Year:</label>
-                            <select onchange="onSelectReportType(this)" name="site_type">
-                                <option value="">Choose the site type</option>
-                                <option value="art">Public Art</option>
-                                <option value="historical">Historical Site</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label><input type="radio" name="coords" value="t">&nbsp2010</label>
-                            <label><input type="radio" name="coords" value="t">&nbsp2022</label>
-                        </div>
-                        </form>
+                <div> Welcome to the Mendota Yahara Watershed Historical Forest Patches Viewer! <br> <br>
+                    To learn more about the background of this project see the links below the heading. This tool can be used to explore changes in forest patches in the watershed over time. HIstorical imagery can be changed in the upper right hand corner of the map.
+                    <br><br>While this application version only displays the most recent decade of data, imagery going back to 1937 was analyzed revealing about a 0.7% decrease in forest area over the entire watershed.
                 </div>
+
+                    <br><br><br>
+                <div id="chart" style="bottom: 0px"> <img src="data/Picture3.png"></img></div>
+
+<!--                &lt;!&ndash; Imagery Tab Panel &ndash;&gt;-->
+<!--                <div class="tab-pane active" id="imagery">-->
+
+<!--                </div>-->
             </div>
 
         </div>
