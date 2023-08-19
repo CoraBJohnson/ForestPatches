@@ -100,7 +100,7 @@ function symbol2(data,map) {
 
     L.geoJson(data, {
         style: function(feature) {
-            switch (feature.properties.Forest_Sta) {
+            switch (feature.properties.Forest_Status) {
                 case 'ForestForest': return {color: "#267300"};
                 case 'ForestNotForest':   return {color: "#a5f57a"};
                 case 'NotForestNotForest': return {color: "#654321", fillColor:"#654321" };
@@ -142,7 +142,7 @@ function createLegend(map, data, attValue) {
 //Import GeoJSON data
 function getData(map){
     //load the data
-    var data = $.ajax("data/FP10_22.geojson", {
+    var data = $.ajax("data/fp1022JSON.geojson", {
         dataType: "json",
         success: function(response){
             var attributes = ['Forest since 2010', 'Forest in 2010, Not Forest in 2022', 'Not Forest Since 2010'];
