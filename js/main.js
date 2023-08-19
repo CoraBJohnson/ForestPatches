@@ -12,7 +12,7 @@ function createMap() {
     //add tile layer
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 20,
-        attribution: 'Tiles &copy; Esri'
+        attribution: '&copy; Esri, Dane County, WI'
     }).addTo(map);
 
 //add reference tile layer
@@ -37,14 +37,46 @@ function createMap() {
         position: 'bottomleft'
     }).addTo(map);
 
+    var OpenStreetMap_DE = L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+
     var lyrImagery2010;
     var lyrImagery2022;
     var lyrImagerytest;
 
 
-    lyrImagery2010 = L.imageOverlay('data/fp2010.png', [[43.279063, -89.619900], [43.017300, -89.342106]]).addTo(map);
-    lyrImagery2022 = L.imageOverlay('data/fp2022.png', [[43.279063, -89.619900], [43.017300, -89.342106]]).addTo(map);
+    lyrImagery2010 = L.imageOverlay('data/fp2010.png', [[43.279063, -89.619900], [43.017300, -89.342106]], {opacity: 0.7}).addTo(map);
+    lyrImagery2022 = L.imageOverlay('data/fp2022.png', [[43.279063, -89.619900], [43.017300, -89.342106]], {opacity: 0.7}).addTo(map);
     //lyrImagerytest = L.imageOverlay('data/Layout.png', [[43.279063, -89.619900], [43.017300, -89.342106]]).addTo(map);
+
+
+    objOverlays = {
+        "2022 Imagery" : lyrImagery2022,
+        "2010 Imagery" : lyrImagery2010
+    };
+
+
+    //leaflet layer control
+    var baseMaps = {
+        'Open Street Map': OpenStreetMap_DE,
+        '2022 Imagery': lyrImagery2022,
+        '2010 Imagery': lyrImagery2010
+    }
+
+    L.control.layers(baseMaps).addTo(map);
+    // L.control.layers({
+    //     position: 'bottomright'
+    // }).addTo(map);
+
+    ctlLayer = L.control.layers(objOverlays).addTo(map);
+
+    //ctlSidebar = L.control.sidebar('side-bar').addTo(map);
+
+
+
+
 
 
     //call getData function to add data
@@ -65,8 +97,8 @@ function legendColor(attValue) {
 function legendColorBorder(attValue) {
     //var attValue = feature.properties.Forest_Sta;
     return attValue == 'NotForestNotForest' ? '#654321':   //descending order from not forest to forest
-        attValue == 'ForestNotForest' ? '#a5f57a' :
-            attValue == 'ForestForest' ? '#336906' :
+        attValue == 'ForestNotForest' ? '#90CF6E' :
+            attValue == 'ForestForest' ? '#274E06' :
                 '#654321';
 };
 
@@ -76,8 +108,8 @@ function legendColor1(data) {
     L.geoJson(data, {
         style: function(feature) {
             switch (feature.properties.Forest_Sta) {
-                case 'ForestForest': return {color: "#336906"};
-                case 'ForestNotForest':   return {color: "#a5f57a"};
+                case 'ForestForest': return {color: "#274E06"};
+                case 'ForestNotForest':   return {color: "#90CF6E"};
                 case 'NotForestNotForest': return {color: "#654321", fillColor:"#654321" };
             }
         }
@@ -101,7 +133,7 @@ function symbol2(data,map) {
     L.geoJson(data, {
         style: function(feature) {
             switch (feature.properties.Forest_Status) {
-                case 'ForestForest': return {color: "#267300"};
+                case 'ForestForest': return {color: "#274E06"};
                 case 'ForestNotForest':   return {color: "#a5f57a"};
                 case 'NotForestNotForest': return {color: "#654321", fillColor:"#654321" };
             }
