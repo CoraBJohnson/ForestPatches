@@ -20,6 +20,11 @@ function createMap() {
         maxZoom: 20,
     }).addTo(map);
 
+    // //add 2022 imagery tile layer
+    // L.tileLayer('https://dcimapapps.countyofdane.com/arcgisimg/rest/services/ColorOrtho6Inch2022WEB/ImageServer/tile/{z}/{y}{x}',{
+    //     maxZoom: 20,
+    // }).addTo(map);
+
     // // add 2022 imagery
     // L.tileLayer(' https://dcimapapps.countyofdane.com/arcgisimg/services/ColorOrtho6Inch2022WEB/ImageServer/tile/{z}/{y}/{x}',{
     //     maxZoom: 20,
@@ -31,6 +36,16 @@ function createMap() {
     L.control.zoom({
         position: 'bottomleft'
     }).addTo(map);
+
+    var lyrImagery2010;
+    var lyrImagery2022;
+    var lyrImagerytest;
+
+
+    lyrImagery2010 = L.imageOverlay('data/fp2010.png', [[43.279063, -89.619900], [43.017300, -89.342106]]).addTo(map);
+    lyrImagery2022 = L.imageOverlay('data/fp2022.png', [[43.279063, -89.619900], [43.017300, -89.342106]]).addTo(map);
+    //lyrImagerytest = L.imageOverlay('data/Layout.png', [[43.279063, -89.619900], [43.017300, -89.342106]]).addTo(map);
+
 
     //call getData function to add data
     getData(map);
